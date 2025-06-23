@@ -1,19 +1,21 @@
 package com.example.helloworldenterprise.application.queries;
 
-import com.example.helloworldenterprise.application.service.GreetingService;
-import com.example.helloworldenterprise.presentation.dto.GreetingResponse;
+import com.example.helloworldenterprise.domain.entity.Greeting;
+import com.example.helloworldenterprise.domain.repository.GreetingRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 public class GetGreetingQueryHandler {
 
-    private final GreetingService service;
+    private final GreetingRepository repository;
 
-    public GetGreetingQueryHandler(GreetingService service) {
-        this.service = service;
+    public GetGreetingQueryHandler(GreetingRepository repository) {
+        this.repository = repository;
     }
 
-    public GreetingResponse handle(GetGreetingQuery query) {
-        return service.getGreeting(query.getLocale());
+    public Optional<Greeting> handle(GetGreetingQuery query) {
+        return repository.findByLocale(query.getLocale());
     }
 }
