@@ -19,6 +19,6 @@ public class GreetingServiceImpl implements GreetingService {
     public GreetingResponse getGreeting(Locale locale) {
         return repository.findByLocale(locale)
                 .map(greeting -> new GreetingResponse(greeting.getMessage()))
-                .orElseThrow(() -> new GreetingNotFoundException("Greeting not found"));
+                .orElseThrow(() -> new GreetingNotFoundException(locale));
     }
 }
