@@ -24,7 +24,7 @@ public class GreetingServiceImpl implements GreetingService {
     @Override
     public GreetingResponse getGreetingByLocale(Locale locale) {
         Greeting greeting = handler.handle(new GetGreetingQuery(locale))
-                .orElseThrow(() -> new GreetingNotFoundException("Greeting not found"));
+                .orElseThrow(() -> new GreetingNotFoundException(locale));
         return mapper.toDto(greeting);
     }
 
