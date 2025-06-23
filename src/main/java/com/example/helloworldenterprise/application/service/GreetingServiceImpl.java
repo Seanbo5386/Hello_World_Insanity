@@ -22,14 +22,9 @@ public class GreetingServiceImpl implements GreetingService {
     }
 
     @Override
-    public GreetingResponse getGreetingByLocale(Locale locale) {
+    public GreetingResponse getGreeting(Locale locale) {
         Greeting greeting = handler.handle(new GetGreetingQuery(locale))
                 .orElseThrow(() -> new GreetingNotFoundException("Greeting not found"));
         return mapper.toDto(greeting);
-    }
-
-    @Override
-    public GreetingResponse getGreetingByLocale(Locale locale) {
-        return getGreeting(locale);
     }
 }
