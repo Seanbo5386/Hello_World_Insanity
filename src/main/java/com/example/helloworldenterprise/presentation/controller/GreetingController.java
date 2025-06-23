@@ -2,6 +2,7 @@ package com.example.helloworldenterprise.presentation.controller;
 
 import com.example.helloworldenterprise.application.service.GreetingService;
 import com.example.helloworldenterprise.presentation.dto.GreetingResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,8 @@ public class GreetingController {
     }
 
     @GetMapping("/greeting")
-    public GreetingResponse greeting(Locale locale) {
-        return service.getGreetingByLocale(locale);
+    public ResponseEntity<GreetingResponse> greeting(Locale locale) {
+        GreetingResponse response = service.getGreetingByLocale(locale);
+        return ResponseEntity.ok(response);
     }
 }
