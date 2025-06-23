@@ -23,9 +23,9 @@ public class ConfigGreetingRepositoryImpl implements GreetingRepository {
 
     public ConfigGreetingRepositoryImpl(
             GreetingFactory factory,
-            @Value("${greeting.english:Hello Config}") String english,
-            @Value("${greeting.french:Bonjour Config}") String french,
-            @Value("${greeting.german:Hallo Config}") String german) {
+            @Value("${greeting.english}") String english,
+            @Value("${greeting.french}") String french,
+            @Value("${greeting.german}") String german) {
         greetings.put(Locale.ENGLISH, factory.createGreeting(english));
         greetings.put(Locale.FRENCH, factory.createGreeting(french));
         greetings.put(Locale.GERMAN, factory.createGreeting(german));
